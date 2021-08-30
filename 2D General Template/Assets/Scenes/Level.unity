@@ -1333,7 +1333,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 58d49b0cd880b6648a1c7cc3645eebf0, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -10685,6 +10685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931040817}
   - component: {fileID: 931040818}
+  - component: {fileID: 931040819}
   m_Layer: 0
   m_Name: Menu Hover Sound
   m_TagString: Untagged
@@ -10802,6 +10803,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &931040819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931040816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f67204c0c37c049a511f298613eb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &943080638
 GameObject:
   m_ObjectHideFlags: 0
@@ -16583,6 +16596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624927620}
   - component: {fileID: 1624927619}
+  - component: {fileID: 1624927621}
   m_Layer: 0
   m_Name: Menu Click Sound
   m_TagString: Untagged
@@ -16700,6 +16714,18 @@ Transform:
   m_Father: {fileID: 1609593140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624927621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624927618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f67204c0c37c049a511f298613eb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1638486765
 GameObject:
   m_ObjectHideFlags: 0
@@ -18336,6 +18362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1832201993}
   - component: {fileID: 1832201992}
+  - component: {fileID: 1832201994}
   m_Layer: 0
   m_Name: Level Music
   m_TagString: Untagged
@@ -18453,6 +18480,18 @@ Transform:
   m_Father: {fileID: 884269791}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1832201994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832201991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f67204c0c37c049a511f298613eb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1835950269
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class MenuBehavior : MonoBehaviour
     #region Variables
     [SerializeField]
     [Tooltip("Animator of level crossfade")]
-    private Animator crossfadeAnim;
+    protected Animator crossfadeAnim;
 
     [SerializeField]
     [Tooltip("Tick true if there is a loading screen")]
@@ -67,7 +67,9 @@ public class MenuBehavior : MonoBehaviour
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName);
         loadOp.allowSceneActivation = false;
 
-        yield return new WaitForSeconds(crossfadeAnim.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSecondsRealtime(crossfadeAnim.GetCurrentAnimatorStateInfo(0).length);
+
+        Time.timeScale = 1;
 
         loadOp.allowSceneActivation = true;
     }
@@ -85,4 +87,3 @@ public class MenuBehavior : MonoBehaviour
     }
     #endregion
 }
-

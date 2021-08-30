@@ -9,38 +9,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System;
+using System.Collections;
 
 public class PauseMenuBehavior : MenuBehavior
 {
+    #region Variables
     /// <summary>
     /// Holds true if the game is currently paused.
     /// </summary>
     private bool isPaused = false;
 
     /// <summary>
-    /// All of the audio sources in the scene.
+    /// Enables and disables the pause feature.
     /// </summary>
-    private List<AudioSource> allAudioSources;
-
-    /// <summary>
-    /// The AudioSource of this levels music.
-    /// </summary>
-    private AudioSource levelMusic;
+    private bool canPause = false;
 
     [SerializeField]
     [Tooltip("The pause menu gameobject")]
     private GameObject pauseMenu = null;
+    #endregion
 
+    #region Functions
     /// <summary>
     /// Initializes components.
     /// </summary>
     private void Awake()
     {
-        levelMusic = GameObject.Find("Level Music").GetComponent<AudioSource>();
+        StartCoroutine(WaitFadeIn());
+    }
 
-        allAudioSources = FindObjectsOfType<AudioSource>().ToList();
+    private IEnumerator WaitFadeIn()
+    {
+        yield return new WaitForSeconds(crossfadeAnim.GetCurrentAnimatorStateInfo(0).length);
 
-        allAudioSources.Remove(levelMusic);
+        canPause = true;
     }
 
     /// <summary>
@@ -48,52 +51,14 @@ public class PauseMenuBehavior : MenuBehavior
     /// </summary>
     public void OnPauseGame()
     {
-        pauseMenu.SetActive(!isPaused);
-
-        if (isPaused)
+        // Opens pause menu and pauses the game
+        if (canPause)
         {
-            ResumeGame();
+            isPaused = !isPaused;
+            pauseMenu.SetActive(isPaused);
+            AudioListener.pause = isPaused;
+            Time.timeScale = Convert.ToInt32(!isPaused);
         }
-        else
-        {
-            PauseGame();
-        }
-
-        isPaused = !isPaused;
-    }
-
-    /// <summary>
-    /// Resumes the game and its audiosources.
-    /// </summary>
-    private void ResumeGame()
-    {
-        // UnPauses all audio sources in the scene
-        foreach (AudioSource aud in allAudioSources)
-        {
-            if (aud != null)
-            {
-                aud.UnPause();
-            }
-        }
-
-        Time.timeScale = 1;
-    }
-
-    /// <summary>
-    /// Pauses the game and its audiosources.
-    /// </summary>
-    private void PauseGame()
-    {
-        // Pauses all audio sources in the scene
-        foreach (AudioSource aud in allAudioSources)
-        {
-            if (aud != null)
-            {
-                aud.Pause();
-            }
-        }
-
-        Time.timeScale = 0;
     }
 
     /// <summary>
@@ -101,11 +66,12 @@ public class PauseMenuBehavior : MenuBehavior
     /// </summary>
     public void RestartLevel()
     {
-        Time.timeScale = 1;
+        canPause = false;
 
         if (!hasLoadScreen)
         {
             StartCoroutine(LoadSceneHelper(SceneManager.GetActiveScene().name));
         }
     }
+    #endregion
 }
